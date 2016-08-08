@@ -61,9 +61,7 @@ class DatabaseSeeder extends Seeder
         // attach tags
         DB::table('post_tag')->truncate();
         foreach ($posts as $post) {
-            $post->tags()->sync(
-                $faker->randomElements($tagsIds, random(1, 2))
-            );
+            $post->tags()->sync([1,2]);
         }
         $this->command->info('tags table seeded');
 
