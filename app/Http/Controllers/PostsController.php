@@ -16,10 +16,10 @@ class PostsController extends Controller
      */
     public function index($slug = null)
     {
-        $query = $slug
+        $model = \App\Tag::pluck('slug')->contains($slug)
             ? \App\Tag::whereSlug($slug)->first()->posts()
             : new Post;
-        $posts = $query->latest()->paginate(3);
+        $posts = $model->with('user')->latest()->paginate(3);
 
         return view('posts.index', compact('posts'));
     }
@@ -51,9 +51,9 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::findOrFail($id);
+        $post->load('user', 'tags');
 
         return view('posts.show', compact('post'));
     }
