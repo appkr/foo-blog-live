@@ -54,14 +54,16 @@ class DatabaseSeeder extends Seeder
             $user->posts()->save(factory(App\Post::class)->make());
         });
 
-        $faker = new Faker\Generator;
+        $faker = Faker\Factory::create();
         $posts = App\Post::get();
         $tagIds = App\Tag::pluck('id')->toArray();
 
         // attach tags
         DB::table('post_tag')->truncate();
         foreach ($posts as $post) {
-            $post->tags()->sync([1,2]);
+            $post->tags()->sync(
+                $faker->randomElements($tagIds, rand(1, 2))
+            );
         }
         $this->command->info('tags table seeded');
 
