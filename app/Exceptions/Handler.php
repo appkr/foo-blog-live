@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -43,6 +44,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if (app()->environment('production')) {
+            $title = 'Error :(';
+            $feedback = 'Unknown Error';
+
+            if ($exception instanceof AuthorizationException) {
+                $title = 'Unauthorized';
+                $feedback = 'You are not allowed to access this resource';
+            }
+
+            return response(
+                view('errors.notice', compact('title', 'feedback')),
+                403
+            );
+        }
+
         return parent::render($request, $exception);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostsRequest;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -9,6 +10,10 @@ use App\Http\Requests;
 
 class PostsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,18 +36,21 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create', ['post' => new Post]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\PostsRequest
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostsRequest $request)
     {
-        //
+        $post = $request->user()->posts()->create($request->all());
+        $post->tags()->sync($request->input('tags'));
+
+        return redirect(route('posts.show', $post->id));
     }
 
     /**
@@ -61,34 +69,43 @@ class PostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $this->authorize('update', $post);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \App\Http\Requests\PostsRequest $request
+     * @param \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostsRequest $request, Post $post)
     {
-        //
+        $this->authorize('update', $post);
+        $post->update($request->all());
+        $post->tags()->sync($request->input('tags'));
+
+        return redirect(route('posts.show', $post->id));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param \App\Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        // 모델을 삭제한다.
+        $post->delete();
+        // 204 JSON 응답을 반환한다.
+        return response()->json([], 204);
     }
 }

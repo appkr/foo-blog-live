@@ -24,5 +24,35 @@
     @endforeach
   </ul>
 
+  <div class="text-center">
+    <a href="{{ route('posts.index') }}" class="btn btn-default">List</a>
+    @can('update', $post)
+      <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning">Edit</a>
+    @endcan
+    @can('delete', $post)
+      <button class="btn btn-danger" @click="deletePost">Delete</button>
+    @endcan
+  </div>
+
   <h2>List of Comments</h2>
 @endsection
+
+@push('script')
+  <script>
+    new Vue({
+      el: 'body',
+
+      methods: {
+        deletePost: function(e) {
+          if (confirm('Are you sure?')) {
+            this.$http.delete('{{ route('posts.destroy', $post->id) }}')
+              .then(function (response) {
+                alert('Post deleted !');
+                window.location.href = '{{ route('posts.index') }}';
+              });
+          }
+        }
+      }
+    });
+  </script>
+@endpush

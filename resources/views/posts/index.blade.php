@@ -2,6 +2,7 @@
 
 @section('content')
   <h1 class="page-header">
+    <a href="{{ route('posts.create') }}" class="btn btn-primary pull-right">New Post</a>
     List of Posts
   </h1>
 

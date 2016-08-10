@@ -78,5 +78,7 @@
 
 <!-- Scripts -->
 <script src="/js/app.js"></script>
+
+@stack('script')
 </body>
 </html>
