@@ -1,4 +1,4 @@
-# 라라벨 웹 프레임워크로 블로그 막 만들기
+# 라라벨 웹 프레임워크로 "막무가내" 블로그 만들기
 
 페이스북으로 중계한 라이브 코딩에서 만든 결과물입니다.
 
@@ -12,13 +12,15 @@
 
 으로 했습니다.
 
-## 2. 라이브 영상
+**`안내`** 영상에서는 프레임워크의 기본 기능 또는 개념에 대해 자세히 설명하지 않습니다.
 
-라이브 코딩하시는 분들 존경스럽습니다. 경험해 보니, 고도의 집중력으로 코딩도 해야 하고, 말도 해야 하는 일이더군요. 끝나고 모니터링 해보니 정말 부끄러웠습니다. 오늘보다 더 나은 내일을 위해서 멈추지 않겠습니다.
+## 2. 라이브 코딩 영상
 
 -   [1편 - 오프닝, Database migration, Model factory, Database seeder](https://www.facebook.com/juwonkimatmedotcom/videos/10202001156626674/)
--   [2편 - Model & Relationships, `posts` Route & `PostsController`](https://www.facebook.com/juwonkimatmedotcom/videos/10202001339431244/)
--   8월 10일(수) 22시부터 계속 이어서 진행할 예정입니다.
+-   [2편 - Model & Relationships, 글 목록, 글 상세 보기](https://www.facebook.com/juwonkimatmedotcom/videos/10202001339431244/)
+-   [3편 - 새 글 작성 폼 및 처리 로직](https://www.facebook.com/juwonkimatmedotcom/videos/10202008678054705/)
+-   [4편 - 글 수정 및 삭제](https://www.facebook.com/juwonkimatmedotcom/videos/10202009028823474/)
+-   다음 편 라이브 일정은 페이스북을 통해 공개하도록 하겠습니다. 다음 편에서는 댓글 기능을 만듭니다(시간이 되면 테스트 코드도 작성하겠습니다).
 
 ## 3. 설치법
 
@@ -85,7 +87,7 @@ mysql> quit
 foo-blog-live $
 ```
 
-##### 3.5. 마이그레이션과 시딩
+#### 3.5. 마이그레이션과 시딩
 
 테이블 스키마를 만들고, 테스트 데이터를 심습니다.
 
@@ -93,14 +95,21 @@ foo-blog-live $
 foo-blog-live $ php artisan migrate:refresh --seed
 ```
 
-##### 3.6. 확인
+#### 3.6. 확인
 
-라이브 2편에서 사용하던 브랜치로 이동하여, 로컬 서버를 구동하고 작동을 확인합니다.
+로컬 서버를 구동하고 작동을 확인합니다.
 
 ```sh
-foo-blog-live(master) $ git checkout feature/posts
-foo-blog-live(feature/posts) $ php artisan serve
+foo-blog-live $ php artisan serve
 # Laravel development server started on http://localhost:8000/
 ```
 
-브라우저에서 `http://localhost:8000/`, `http://localhost:8000/posts` 주소를 열어 확인합니다.
+브라우저에서 `http://localhost:8000/` 주소를 열어 확인합니다.
+
+## 4. 소스 싱크
+
+이미 3절의 과정을 진행하신 분은 다음 명령으로 최신 소스코드를 받을 수 있습니다.
+
+```sh
+foo-blog-live $ git pull
+```
