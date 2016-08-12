@@ -11,7 +11,7 @@
   </ul>
 
   <article>
-    {{ $post->content }}
+    {!! markdown($post->content) !!}
   </article>
 
   <ul>
@@ -27,10 +27,14 @@
   <div class="text-center">
     <a href="{{ route('posts.index') }}" class="btn btn-default">List</a>
     @can('update', $post)
-      <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning">Edit</a>
+      <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning">
+        Edit
+      </a>
     @endcan
     @can('delete', $post)
-      <button class="btn btn-danger" @click="deletePost">Delete</button>
+      <button class="btn btn-danger" @click="deletePost">
+        Delete
+      </button>
     @endcan
   </div>
 
@@ -41,6 +45,10 @@
   <script>
     new Vue({
       el: 'body',
+
+      ready: function () {
+        hljs.initHighlightingOnLoad();
+      },
 
       methods: {
         deletePost: function(e) {

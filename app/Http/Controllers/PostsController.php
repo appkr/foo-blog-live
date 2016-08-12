@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostsRequest;
 use App\Post;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 
 class PostsController extends Controller
 {
@@ -14,6 +11,7 @@ class PostsController extends Controller
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,6 +19,7 @@ class PostsController extends Controller
      */
     public function index($slug = null)
     {
+        // Todo - 쿼리 오브젝트로 추출
         $model = \App\Tag::pluck('slug')->contains($slug)
             ? \App\Tag::whereSlug($slug)->first()->posts()
             : new Post;
@@ -36,7 +35,9 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create', ['post' => new Post]);
+        return view('posts.create', [
+            'post' => new Post
+        ]);
     }
 
     /**
@@ -49,13 +50,14 @@ class PostsController extends Controller
     {
         $post = $request->user()->posts()->create($request->all());
         $post->tags()->sync($request->input('tags'));
-
+        //Todo - 플래시 메시지??
         return redirect(route('posts.show', $post->id));
     }
 
     /**
      * Display the specified resource.
      *
+     * @param \App\Post $post
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
@@ -103,9 +105,9 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
-        // 모델을 삭제한다.
+        $this->authorize('delete', $post);
         $post->delete();
-        // 204 JSON 응답을 반환한다.
+
         return response()->json([], 204);
     }
 }

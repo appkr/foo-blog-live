@@ -2,6 +2,7 @@
 
 @section('content')
   <h1 class="page-header">
+    <!--Todo - 포스트 제목-->
     New Post
   </h1>
 

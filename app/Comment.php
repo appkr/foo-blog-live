@@ -8,6 +8,7 @@ class Comment extends Model
 {
     protected $fillable = [
         'content',
+        'post_id',
     ];
 
     // Relationships

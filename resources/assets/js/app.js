@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+window.hljs = require('highlight.js/lib/index');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

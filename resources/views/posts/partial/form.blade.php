@@ -11,6 +11,9 @@
 <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
   <label for="tags"">Tags</label>
   <select id="tags" class="form-control" name="tags[]" multiple="multiple">
+    <option disabled>Select one</option>
+    <!--collect(old('tags))->contains($tag->id)-->
+    <!--Extract to helper function-->
     @foreach ($allTags as $tag)
       <option value="{{ $tag->id }}" {{ $post->tags->contains($tag->id) ? 'selected="selected"' : ''}}>
         {{ $tag->name }}

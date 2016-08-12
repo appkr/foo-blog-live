@@ -10,6 +10,13 @@ Route::get('tags/{slug}/posts', [
 ]);
 Route::resource('posts', 'PostsController');
 
+Route::resource('posts.comments', 'CommentsController', [
+    'only' => ['index', 'store']
+]);
+Route::resource('comments', 'CommentsController', [
+    'only' => ['update', 'destroy']
+]);
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

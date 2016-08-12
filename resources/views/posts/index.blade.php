@@ -24,6 +24,6 @@
   </ul>
 
   <div class="text-center">
-    {!! $posts->render() !!}
+    {!! $posts->appends(request()->except('page'))->links() !!}
   </div>
 @endsection
