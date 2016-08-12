@@ -35,7 +35,7 @@ class CommentsController extends Controller
     {
         $this->validate($request, ['content' => 'required']);
         $request->merge(['post_id' => $post->id]);
-        $comment = $request->user()->comment()->create($request->all());
+        $comment = $request->user()->comments()->create($request->all());
 
         return $comment->load('user');
     }
