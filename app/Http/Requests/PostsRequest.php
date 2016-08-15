@@ -26,7 +26,6 @@ class PostsRequest extends Request
         return [
             'title' => ['required', 'min:2'],
             'content' => ['required', 'min:10'],
-            // Todo - ??
             'tags' => ['required', 'array', 'exists:tags,id'],
         ];
     }

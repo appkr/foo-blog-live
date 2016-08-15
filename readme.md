@@ -21,6 +21,9 @@
 -   [3편 - 새 글 작성 폼 및 처리 로직](https://www.facebook.com/juwonkimatmedotcom/videos/10202008678054705/)
 -   [4편 - 글 수정 및 삭제](https://www.facebook.com/juwonkimatmedotcom/videos/10202009028823474/)
 -   다음 편 라이브 일정은 페이스북을 통해 공개하도록 하겠습니다. 다음 편에서는 댓글 기능을 만듭니다(시간이 되면 테스트 코드도 작성하겠습니다).
+-   [5편 - 마크다운 컴파일러 적용 및 댓글 컨트롤러 작성](https://www.facebook.com/juwonkimatmedotcom/videos/10202016151401534/)
+-   [6편 - Vue.js를 이용한 댓글 뷰](https://www.facebook.com/juwonkimatmedotcom/videos/10202016604092851/)
+-   [7편 - 버그 수정, 기능 개선, 기능 추가, 리팩토링, 스타일링](https://www.facebook.com/juwonkimatmedotcom/videos/10202027493085069/)
 
 ## 3. 설치법
 
