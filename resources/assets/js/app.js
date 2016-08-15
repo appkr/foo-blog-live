@@ -19,3 +19,7 @@ window.hljs = require('highlight.js/lib/index');
 // var app = new Vue({
 //     el: 'body'
 // });
+
+(function () {
+  $('.alert').delay(3000).fadeOut('fast');
+})();

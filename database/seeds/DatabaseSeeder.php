@@ -13,15 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->setUp();
 
-        // tags table
-        App\Tag::truncate();
-        foreach (config('project.tags') as $tag) {
-            App\Tag::create([
-                'name' => $tag,
-                'slug' => str_slug($tag),
-            ]);
-        }
-        $this->command->info('tags table seeded');
+        $this->call(TagsTableSeeder::class);
 
         if (! app()->environment('production')) {
             $this->runDevSeed();
@@ -42,38 +34,8 @@ class DatabaseSeeder extends Seeder
 
     private function runDevSeed()
     {
-        // users table
         $this->call(UsersTableSeeder::class);
-
-        $users = App\User::get();
-
-        // posts table
-        App\Post::truncate();
-        $users->each(function ($user) {
-            $user->posts()->save(factory(App\Post::class)->make());
-            $user->posts()->save(factory(App\Post::class)->make());
-        });
-
-        $faker = Faker\Factory::create();
-        $posts = App\Post::get();
-        $tagIds = App\Tag::pluck('id')->toArray();
-
-        // attach tags
-        DB::table('post_tag')->truncate();
-        foreach ($posts as $post) {
-            $post->tags()->sync(
-                $faker->randomElements($tagIds, rand(1, 2))
-            );
-        }
-        $this->command->info('tags table seeded');
-
-        // comments table
-        App\Comment::truncate();
-        $posts->each(function ($post) {
-            $post->comments()->save(
-                factory(App\Comment::class)->make()
-            );
-        });
-        $this->command->info('comments table seeded');
+        $this->call(PostsTableSeeder::class);
+        $this->call(CommentsTableSeeder::class);
     }
 }

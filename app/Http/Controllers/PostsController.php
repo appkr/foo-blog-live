@@ -15,15 +15,12 @@ class PostsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param null $slug
      * @return \Illuminate\Http\Response
      */
     public function index($slug = null)
     {
-        // Todo - 쿼리 오브젝트로 추출
-        $model = \App\Tag::pluck('slug')->contains($slug)
-            ? \App\Tag::whereSlug($slug)->first()->posts()
-            : new Post;
-        $posts = $model->with('user')->latest()->paginate(3);
+        $posts = (new \App\Queries\PostsQuery)->fetch($slug);
 
         return view('posts.index', compact('posts'));
     }
@@ -50,7 +47,8 @@ class PostsController extends Controller
     {
         $post = $request->user()->posts()->create($request->all());
         $post->tags()->sync($request->input('tags'));
-        //Todo - 플래시 메시지??
+        flash('Post saved!', 'success');
+
         return redirect(route('posts.show', $post->id));
     }
 
@@ -93,6 +91,7 @@ class PostsController extends Controller
         $this->authorize('update', $post);
         $post->update($request->all());
         $post->tags()->sync($request->input('tags'));
+        flash('Post updated!', 'success');
 
         return redirect(route('posts.show', $post->id));
     }

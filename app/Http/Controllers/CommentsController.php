@@ -37,7 +37,7 @@ class CommentsController extends Controller
         $request->merge(['post_id' => $post->id]);
         $comment = $request->user()->comments()->create($request->all());
 
-        return $comment->load('user');
+        return response()->json($comment->load('user')->toArray());
     }
 
     /**
@@ -53,9 +53,8 @@ class CommentsController extends Controller
         $this->validate($request, ['content' => 'required']);
         $this->authorize('update', $comment);
         $comment->update($request->all());
-        $comment->load('user');
 
-        return response()->json($comment);
+        return response()->json($comment->load('user')->toArray());
     }
 
     /**

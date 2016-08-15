@@ -12,10 +12,12 @@
   <label for="tags"">Tags</label>
   <select id="tags" class="form-control" name="tags[]" multiple="multiple">
     <option disabled>Select one</option>
-    <!--collect(old('tags))->contains($tag->id)-->
-    <!--Extract to helper function-->
     @foreach ($allTags as $tag)
-      <option value="{{ $tag->id }}" {{ $post->tags->contains($tag->id) ? 'selected="selected"' : ''}}>
+      @if ($errors->count())
+        <option value="{{ $tag->id }}" {{ collection_contains(collect(old('tags')), $tag->id) ? 'selected="selected"' : ''}}>
+      @else
+        <option value="{{ $tag->id }}" {{ collection_contains($post->tags, $tag->id) ? 'selected="selected"' : ''}}>
+      @endif
         {{ $tag->name }}
       </option>
     @endforeach

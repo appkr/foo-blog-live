@@ -47,15 +47,16 @@ class Handler extends ExceptionHandler
         if (app()->environment('production')) {
             $title = 'Error :(';
             $feedback = 'Unknown Error';
+            $statusCode = $exception->getCode() ?: 400;
 
-            if ($exception instanceof AuthorizationException) {
+            if ($this->isUnauthorized($exception)) {
                 $title = 'Unauthorized';
                 $feedback = 'You are not allowed to access this resource';
             }
 
             return response(
                 view('errors.notice', compact('title', 'feedback')),
-                403
+                $statusCode
             );
         }
 
@@ -76,5 +77,10 @@ class Handler extends ExceptionHandler
         }
 
         return redirect()->guest('login');
+    }
+
+    private function isUnauthorized($exception)
+    {
+        return $exception instanceof AuthorizationException;
     }
 }
