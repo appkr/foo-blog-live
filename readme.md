@@ -1,5 +1,7 @@
 # 라라벨 웹 프레임워크로 "막무가내" 블로그 만들기
 
+[![Build Status](https://travis-ci.org/appkr/foo-blog-live.svg)](https://travis-ci.org/appkr/foo-blog-live)
+
 페이스북으로 중계한 라이브 코딩에서 만든 결과물입니다.
 
 ## 1. 목적
@@ -12,7 +14,7 @@
 
 으로 했습니다.
 
-**`안내`** 영상에서는 프레임워크의 기본 기능 또는 개념에 대해 자세히 설명하지 않습니다.
+**`안내`** 강의가 아닙니다. 따라서, 영상에서는 프레임워크의 기본 기능 또는 개념에 대해 자세히 설명하지 않습니다.
 
 ## 2. 라이브 코딩 영상
 
@@ -20,9 +22,8 @@
 -   [2편 - Model & Relationships, 글 목록, 글 상세 보기](https://www.facebook.com/juwonkimatmedotcom/videos/10202001339431244/)
 -   [3편 - 새 글 작성 폼 및 처리 로직](https://www.facebook.com/juwonkimatmedotcom/videos/10202008678054705/)
 -   [4편 - 글 수정 및 삭제](https://www.facebook.com/juwonkimatmedotcom/videos/10202009028823474/)
--   다음 편 라이브 일정은 페이스북을 통해 공개하도록 하겠습니다. 다음 편에서는 댓글 기능을 만듭니다(시간이 되면 테스트 코드도 작성하겠습니다).
 -   [5편 - 마크다운 컴파일러 적용 및 댓글 컨트롤러 작성](https://www.facebook.com/juwonkimatmedotcom/videos/10202016151401534/)
--   [6편 - Vue.js를 이용한 댓글 뷰](https://www.facebook.com/juwonkimatmedotcom/videos/10202016604092851/)
+-   [6편 - Vue.js를 이용한 댓글 기능 개발](https://www.facebook.com/juwonkimatmedotcom/videos/10202016604092851/)
 -   [7편 - 버그 수정, 기능 개선, 기능 추가, 리팩토링, 스타일링](https://www.facebook.com/juwonkimatmedotcom/videos/10202027493085069/)
 -   [8편 - Post 기능에 대한 Functional Test #1](https://www.facebook.com/juwonkimatmedotcom/videos/10202035592967561/)
 -   [9편 - Post 기능에 대한 Functional Test #2](https://www.facebook.com/juwonkimatmedotcom/videos/10202035781452273/)
