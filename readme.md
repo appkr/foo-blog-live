@@ -24,6 +24,8 @@
 -   [5편 - 마크다운 컴파일러 적용 및 댓글 컨트롤러 작성](https://www.facebook.com/juwonkimatmedotcom/videos/10202016151401534/)
 -   [6편 - Vue.js를 이용한 댓글 뷰](https://www.facebook.com/juwonkimatmedotcom/videos/10202016604092851/)
 -   [7편 - 버그 수정, 기능 개선, 기능 추가, 리팩토링, 스타일링](https://www.facebook.com/juwonkimatmedotcom/videos/10202027493085069/)
+-   [8편 - Post 기능에 대한 Functional Test #1](https://www.facebook.com/juwonkimatmedotcom/videos/10202035592967561/)
+-   [9편 - Post 기능에 대한 Functional Test #2](https://www.facebook.com/juwonkimatmedotcom/videos/10202035781452273/)
 
 ## 3. 설치법
 
