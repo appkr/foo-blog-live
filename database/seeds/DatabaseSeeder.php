@@ -4,6 +4,8 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+    private $sqlite = false;
+
     /**
      * Run the database seeds.
      *
@@ -24,12 +26,18 @@ class DatabaseSeeder extends Seeder
 
     private function setUp()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        if (config('database.default') == 'sqlite') {
+            $this->sqlite = true;
+        } else {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        }
     }
 
     private function tearDown()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        if (! $this->sqlite) {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        }
     }
 
     private function runDevSeed()

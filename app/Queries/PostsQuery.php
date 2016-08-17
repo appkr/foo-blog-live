@@ -17,6 +17,6 @@ class PostsQuery
             ? Tag::whereSlug($slug)->first()->posts()
             : new Post;
 
-        return $model->with('user')->latest()->paginate(3);
+        return $model->with('user')->orderBy('id', 'desc')->latest()->paginate(3);
     }
 }
