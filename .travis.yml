@@ -10,10 +10,9 @@ install:
   - travis_retry composer install --no-interaction --no-scripts --prefer-source --dev
 
 before_script:
-  - chmoe 775 storage bootstrap/cache
+  - chmod 775 storage bootstrap/cache
   - touch database/database.sqlite
   - cp .env.example .env
-  - php artisan key:generate --verbose
   - php artisan clear-compiled --verbose
   - php artisan optimize --force --verbose
   - php artisan cache:clear --verbose
