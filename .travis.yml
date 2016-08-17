@@ -10,6 +10,7 @@ install:
   - travis_retry composer install --no-interaction --no-scripts --prefer-source --dev
 
 before_script:
+  - TRAVIS=true
   - chmod 775 storage bootstrap/cache
   - touch database/database.sqlite
   - cp .env.example .env
