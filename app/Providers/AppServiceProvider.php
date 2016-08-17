@@ -13,9 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (! getenv('TRAVIS')) {
-            view()->share('allTags', \App\Tag::get());
-        }
+        //
     }
 
     /**
