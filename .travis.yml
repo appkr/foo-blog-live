@@ -10,8 +10,8 @@ install:
   - travis_retry composer install --no-interaction --no-scripts --prefer-source --dev
 
 before_script:
-  - cp .env.example .env
   - touch database/database.sqlite
+  - cp .env.example .env
   - php artisan key:generate
   - php artisan clear-compiled
   - php artisan optimize
