@@ -55,6 +55,12 @@ $ cd foo-blog-live
 foo-blog-live $ composer install
 ```
 
+라라벨이 작동하는데 필요한 디렉터리에 웹 서버 사용자가 쓸 수 있도록 권한을 부여합니다.
+
+```sh
+foo-blog-live $ chmod -R 775 storage bootstrap/cache
+```
+
 #### 3.3. 환경변수
 
 `.env.example` 파일을 복사해서 `.env` 파일을 만듭니다. 또, 프로젝트에 사용할 암호화 키를 만듭니다.
@@ -99,6 +105,13 @@ foo-blog-live $
 
 ```sh
 foo-blog-live $ php artisan migrate:refresh --seed
+```
+
+테스트에 사용할 SQLite 데이터베이스도 만듭니다.
+
+```sh
+foo-blog-live $ touch database/database.sqlite
+foo-blog-live $ php artisan migrate:refresh --database=sqlite --env=testing
 ```
 
 #### 3.6. 확인
