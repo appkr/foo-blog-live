@@ -112,6 +112,7 @@ foo-blog-live $ php artisan migrate:refresh --seed
 ```sh
 foo-blog-live $ touch database/database.sqlite
 foo-blog-live $ php artisan migrate:refresh --database=sqlite --env=testing
+foo-blog-live $ php artisan db:seed --database=sqlite --env=testing --class=TagsTableSeeder
 ```
 
 #### 3.6. 확인
